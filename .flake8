@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 88
+exclude = .git,__pycache__,__init__.py,.mypy_cache,.pytest_cache
+# TODO - Is it configured right?
+#        See https://flake8.pycqa.org/en/latest/user/options.html#cmdoption-flake8-per-file-ignores
+per-file-ignores = **/**/__init__.py:F401

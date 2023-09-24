@@ -1,0 +1,15 @@
+__pycache__
+app.egg-info
+
+# Python project files
+.mypy_cache
+.coverage
+htmlcov
+.python-version
+.venv
+
+# Testing
+.pytest_cache
+
+# Local development
+temp*
