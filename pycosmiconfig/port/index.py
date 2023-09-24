@@ -48,6 +48,7 @@ def _get_internal_options(module_name: str, options: Options):
     meta_explorer = ExplorerSync(
         InternalOptions(
             package_prop="tool.pycosmiconfig",
+            config_prop="pycosmiconfig",
             stop_dir=os.getcwd(),
             search_places=meta_search_places,
             ignore_empty_search_places=False,
@@ -77,14 +78,15 @@ def _get_internal_options(module_name: str, options: Options):
 
     override_options.meta_config_file_path = meta_config_result.filepath
 
-    return InternalOptions(
-        **options.dict(), **remove_none_values_from_object(override_options.dict())
-    )
+    merged_options = {**options.dict()}
+    merged_options.update(remove_none_values_from_object(override_options.dict()))
+    return InternalOptions(**merged_options)
 
 
 def _normalize_options(module_name: str, options: InternalOptions):
     defaults = InternalOptions(
-        package_prop=module_name,
+        package_prop=f"tool.{module_name}",
+        config_prop=module_name,
         search_places=[
             # PORT COMMENT: use `pyproject` instead of `package.json`
             "pyproject.toml",
@@ -127,6 +129,7 @@ def _normalize_options(module_name: str, options: InternalOptions):
 def cosmiconfig(
     module_name: str,
     package_prop: Optional[Union[str, List[str]]] = None,
+    config_prop: Optional[Union[str, List[str]]] = None,
     search_places: Optional[List[str]] = None,
     ignore_empty_search_places: Optional[bool] = None,
     stop_dir: Optional[str] = None,
@@ -137,6 +140,7 @@ def cosmiconfig(
     Options.update_forward_refs()
     options = Options(
         package_prop=package_prop,
+        config_prop=config_prop,
         search_places=search_places,
         ignore_empty_search_places=ignore_empty_search_places,
         stop_dir=stop_dir,

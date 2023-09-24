@@ -52,29 +52,28 @@ class ExplorerSync(ExplorerBase):
             parent_dir = from_dir.parent.resolve()
             if from_dir != stop_dir and from_dir != parent_dir:
                 from_dir = parent_dir
-                if self._search_cache:
+                if self._search_cache is not None:
                     return emplace(self._search_cache, str(from_dir), _search)
                 return _search()
             return self._config.transform(None)
 
-        if self._search_cache:
+        if self._search_cache is not None:
             return emplace(self._search_cache, str(from_dir), _search)
         return _search()
 
     def _read_configuration(self, filepath: Union[str, Path]) -> CosmiconfigResult:
         filepath = Path(filepath)
-        with filepath.open("r", encoding="utf-8") as file:
-            contents = file.read()
-            return self._to_cosmiconfig_result(
-                str(filepath), self._load_configuration(filepath, contents)
-            )
+        with open(str(filepath), 'r') as f:
+            contents = f.read()
+        config = self._load_configuration(filepath, contents)
+        return self._to_cosmiconfig_result(str(filepath), config)
 
     def _load_configuration(self, filepath: Path, contents: str) -> Optional[Config]:
         if not contents.strip():
             return None
 
         # PORT COMMENT: JS version reads `package.json`
-        if filepath.name == "pyproject.toml":
+        if filepath.name in ["pyproject.toml", "pyproject.tml"]:
             pyproject_conf = load_toml(str(filepath), contents)
             return get_property_by_path(pyproject_conf, self._config.package_prop)
 

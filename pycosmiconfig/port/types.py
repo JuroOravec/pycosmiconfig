@@ -51,6 +51,11 @@ class Transform(Protocol):
 class CommonOptions(BaseModel):
     """@public"""
 
+    # PORT COMMENT: `config_prop` is our custom field, because in pyproject.toml
+    #               we need to prefix the package name with `tool.`.
+    #               Hence we must support multiple props to search for
+    config_prop: Optional[Union[str, List[str]]] = Field(default=None)
+
     package_prop: Optional[Union[str, List[str]]] = Field(default=None)
     search_places: Optional[List[str]] = Field(default=None)
     ignore_empty_search_places: Optional[bool] = Field(default=None)
@@ -76,7 +81,9 @@ class InternalOptions(BaseModel):
     apply_package_property_path_to_configuration: Optional[bool] = Field(default=None)
     meta_config_file_path: Optional[str] = Field(default=None)
 
-    # PORT COMMENT: Equivalent to `Required<Options>`
+    # PORT COMMENT: The below is equivalent to `Required<Options>`
+    # PORT COMMENT 2: `config_prop` is our custom field.
+    config_prop: Optional[Union[str, List[str]]] = Field(default=None)
     package_prop: Union[str, List[str]] = Field(default=None)
     search_places: List[str] = Field(default=None)
     ignore_empty_search_places: bool = Field(default=None)

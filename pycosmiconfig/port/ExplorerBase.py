@@ -61,7 +61,10 @@ class ExplorerBase:
             self._config.apply_package_property_path_to_configuration
             or self._loading_meta_config
         ):
-            config = get_property_by_path(config, self._config.package_prop)
+            prop_name = self._config.config_prop
+            if Path(filepath).name in ["pyproject.toml", "pyproject.tml"]:
+                prop_name = self._config.package_prop
+            config = get_property_by_path(config, prop_name)
         if config is None:
             return CosmiconfigResult(filepath=filepath, config=None, is_empty=True)
 
