@@ -6,7 +6,7 @@ Pycosmiconfig is the Python port of the popular [Cosmiconfig](https://github.com
 
 > NOTE: Pycosmiconfig uses the same version number as the Cosmiconfig version it's equivalent to. E.g. Pycosmiconfig v8.3.6 == Cosmiconfig v8.3.6
 >
-> NOTE 2: Pycosmiconfig differs in 3 features:
+> NOTE 2: Pycosmiconfig differs in 3 features from original Cosmiconfig:
 >
 > 1. Pycosmiconfig prefixes searched property with `tool.` when searching in `pyproject.toml`. So `packageName` becomes `tool.packageName`. On contrary, Cosmiconfig searches for property `packageName` in `package.json`.
 > 2. The settings to [configure Pycosmiconfig](#configure-cosmiconfig) are under the `pycosmiconfig` property, instead of Cosmiconfig's `cosmiconfig`.
