@@ -2,7 +2,7 @@
 
 [![codecov](https://codecov.io/gh/jurooravec/pycosmiconfig/branch/main/graph/badge.svg)](https://codecov.io/gh/jurooravec/pycosmiconfig)
 
-Pycosmiconfig is the Python port of the popular [Cosmiconfig](https://github.com/cosmiconfig/cosmiconfig) package.
+Pycosmiconfig is the Python port of the popular [Cosmiconfig](https://github.com/cosmiconfig/cosmiconfig) package (3.7k ⭐️).
 
 > NOTE: Pycosmiconfig uses the same version number as the Cosmiconfig version it's equivalent to. E.g. Pycosmiconfig v8.3.6 == Cosmiconfig v8.3.6
 >
