@@ -129,7 +129,6 @@ def _normalize_options(module_name: str, options: InternalOptions):
 def cosmiconfig(
     module_name: str,
     package_prop: Optional[Union[str, List[str]]] = None,
-    config_prop: Optional[Union[str, List[str]]] = None,
     search_places: Optional[List[str]] = None,
     ignore_empty_search_places: Optional[bool] = None,
     stop_dir: Optional[str] = None,
@@ -137,6 +136,11 @@ def cosmiconfig(
     loaders: Optional[Loaders] = None,
     transform: Optional[Transform] = None,
 ):
+    # PORT COMMENT: Handle the difference between prop in pyproject.toml
+    #               and elsewhere
+    config_prop = package_prop
+    package_prop = f'tool.{package_prop}'
+
     Options.update_forward_refs()
     options = Options(
         package_prop=package_prop,
