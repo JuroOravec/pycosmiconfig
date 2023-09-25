@@ -1,7 +1,7 @@
 [tool.poetry]
 # NOTE: MUST be same as the dir with python files
 name = "pycosmiconfig"
-version = "0.1.0"
+version = "8.3.6"
 description = "Python port of Cosmiconfig. Find and load configuration from a pyproject.toml property, rc file, Python file, and more!"
 authors = ["Juro Oravec <juraj.oravec.josefson@gmail.com>"]
 maintainers = ["Juro Oravec <juraj.oravec.josefson@gmail.com>"]
